@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuccessPopUpVC" customModule="PlugSpace" customModuleProvider="target">
+            <connections>
+                <outlet property="btnOk" destination="tij-hc-wVS" id="9fK-3b-0Od"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewMain" destination="BaM-zh-7uF" id="L9N-e3-S31"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="59D-kV-lvA">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaM-zh-7uF">
+                            <rect key="frame" x="29" y="215.5" width="356" height="465"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_sucess" translatesAutoresizingMaskIntoConstraints="NO" id="8xZ-my-2xz">
+                                    <rect key="frame" x="105" y="46" width="146" height="146.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="8xZ-my-2xz" secondAttribute="height" id="jv8-4b-gBg"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaC-o4-ENu">
+                                    <rect key="frame" x="20" y="218.5" width="316" height="35.5"/>
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="32"/>
+                                    <color key="textColor" name="Orange"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T93-bD-PYd">
+                                    <rect key="frame" x="15" y="274" width="326" height="71"/>
+                                    <string key="text">Thanks for submitting your profile we
+will get back to you shortly. Mean while take a look at what people around scor score and what is out there while we generate your score</string>
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="16"/>
+                                    <color key="textColor" name="Font_Black"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tij-hc-wVS">
+                                    <rect key="frame" x="20" y="375" width="316" height="60"/>
+                                    <color key="backgroundColor" name="Orange"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="7XF-yX-h78"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="18"/>
+                                    <state key="normal" title="OK">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clickBtnOk:" destination="-1" eventType="touchUpInside" id="lqd-VS-nkw"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="T93-bD-PYd" firstAttribute="leading" secondItem="BaM-zh-7uF" secondAttribute="leading" constant="15" id="3Uc-Uo-WFh"/>
+                                <constraint firstAttribute="trailing" secondItem="8xZ-my-2xz" secondAttribute="trailing" constant="105" id="D8J-19-pzN"/>
+                                <constraint firstItem="tij-hc-wVS" firstAttribute="leading" secondItem="BaM-zh-7uF" secondAttribute="leading" constant="20" id="Htf-Va-PHD"/>
+                                <constraint firstItem="tij-hc-wVS" firstAttribute="top" secondItem="T93-bD-PYd" secondAttribute="bottom" constant="30" id="PNj-zN-Csa"/>
+                                <constraint firstItem="8xZ-my-2xz" firstAttribute="leading" secondItem="BaM-zh-7uF" secondAttribute="leading" constant="105" id="Twr-mx-l1Z"/>
+                                <constraint firstItem="oaC-o4-ENu" firstAttribute="leading" secondItem="BaM-zh-7uF" secondAttribute="leading" constant="20" id="X9f-Av-gDv"/>
+                                <constraint firstAttribute="trailing" secondItem="tij-hc-wVS" secondAttribute="trailing" constant="20" id="eN5-4u-1z8"/>
+                                <constraint firstAttribute="trailing" secondItem="oaC-o4-ENu" secondAttribute="trailing" constant="20" id="hbb-pQ-qEz"/>
+                                <constraint firstAttribute="trailing" secondItem="T93-bD-PYd" secondAttribute="trailing" constant="15" id="i3e-FZ-fYf"/>
+                                <constraint firstItem="T93-bD-PYd" firstAttribute="top" secondItem="oaC-o4-ENu" secondAttribute="bottom" constant="20" id="qAg-E0-gXc"/>
+                                <constraint firstItem="oaC-o4-ENu" firstAttribute="top" secondItem="8xZ-my-2xz" secondAttribute="bottom" constant="26" id="rOP-Q4-BBo"/>
+                                <constraint firstAttribute="bottom" secondItem="tij-hc-wVS" secondAttribute="bottom" constant="30" id="vHO-x7-MHQ"/>
+                                <constraint firstItem="8xZ-my-2xz" firstAttribute="top" secondItem="BaM-zh-7uF" secondAttribute="top" constant="46" id="vdB-fT-BHX"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="BaM-zh-7uF" firstAttribute="centerY" secondItem="59D-kV-lvA" secondAttribute="centerY" id="Oip-w1-35E"/>
+                        <constraint firstItem="BaM-zh-7uF" firstAttribute="centerX" secondItem="59D-kV-lvA" secondAttribute="centerX" id="nGO-cr-BSs"/>
+                        <constraint firstItem="BaM-zh-7uF" firstAttribute="width" secondItem="59D-kV-lvA" secondAttribute="width" multiplier="0.86" id="tik-aB-oU9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
+            <constraints>
+                <constraint firstItem="59D-kV-lvA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3Fb-bf-qcx"/>
+                <constraint firstAttribute="bottom" secondItem="59D-kV-lvA" secondAttribute="bottom" id="JMR-Hv-kJo"/>
+                <constraint firstItem="tij-hc-wVS" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.09" priority="755" id="USi-d3-oqc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="59D-kV-lvA" secondAttribute="trailing" id="ck7-qh-aiQ"/>
+                <constraint firstItem="59D-kV-lvA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tuP-PB-zy1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="131.8840579710145" y="78.348214285714278"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_sucess" width="83" height="83"/>
+        <namedColor name="Font_Black">
+            <color red="0.031372549019607843" green="0.12549019607843137" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Orange">
+            <color red="0.98000001907348633" green="0.3529999852180481" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

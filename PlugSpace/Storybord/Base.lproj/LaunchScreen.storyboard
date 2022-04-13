@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_splashBG" translatesAutoresizingMaskIntoConstraints="NO" id="9LA-zt-6aM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gy2-mg-zxq">
+                                <rect key="frame" x="112" y="217.5" width="96" height="133.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_SplachLogo" translatesAutoresizingMaskIntoConstraints="NO" id="0a2-BR-y2m">
+                                        <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="0a2-BR-y2m" secondAttribute="height" multiplier="1:1" id="zOf-0m-oFN"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="plugspace" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBJ-wp-AT2">
+                                        <rect key="frame" x="0.0" y="111" width="96" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="20"/>
+                                        <color key="textColor" name="Font_Black"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="cBJ-wp-AT2" secondAttribute="bottom" id="lJX-Ar-V06"/>
+                                    <constraint firstItem="cBJ-wp-AT2" firstAttribute="leading" secondItem="Gy2-mg-zxq" secondAttribute="leading" id="nJZ-zS-uGd"/>
+                                    <constraint firstItem="cBJ-wp-AT2" firstAttribute="top" secondItem="0a2-BR-y2m" secondAttribute="bottom" constant="15" id="qDF-SD-ZMc"/>
+                                    <constraint firstAttribute="trailing" secondItem="0a2-BR-y2m" secondAttribute="trailing" id="rJ4-Iv-n3r"/>
+                                    <constraint firstItem="0a2-BR-y2m" firstAttribute="leading" secondItem="Gy2-mg-zxq" secondAttribute="leading" id="wPX-O5-iPC"/>
+                                    <constraint firstAttribute="trailing" secondItem="cBJ-wp-AT2" secondAttribute="trailing" id="wcJ-mK-l3G"/>
+                                    <constraint firstItem="0a2-BR-y2m" firstAttribute="top" secondItem="Gy2-mg-zxq" secondAttribute="top" id="wuh-Mm-VgS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Gy2-mg-zxq" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="5UN-e3-qGV"/>
+                            <constraint firstItem="Gy2-mg-zxq" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="UaN-H3-JMb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9LA-zt-6aM" secondAttribute="trailing" id="VBu-To-DGX"/>
+                            <constraint firstAttribute="bottom" secondItem="9LA-zt-6aM" secondAttribute="bottom" id="YM4-QR-o05"/>
+                            <constraint firstItem="0a2-BR-y2m" firstAttribute="width" secondItem="9LA-zt-6aM" secondAttribute="width" multiplier="0.3" id="b9C-Np-L58"/>
+                            <constraint firstItem="9LA-zt-6aM" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="f5M-Wh-ovI"/>
+                            <constraint firstItem="9LA-zt-6aM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="o0b-bY-2uz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_SplachLogo" width="234" height="240"/>
+        <image name="ic_splashBG" width="621" height="1344"/>
+        <namedColor name="Font_Black">
+            <color red="0.031372549019607843" green="0.12549019607843137" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
