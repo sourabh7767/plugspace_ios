@@ -69,6 +69,9 @@ class EditProfileVM:BaseVM {
     var removeMediaId = ""
     var type = ""
     var feedImage = Data()
+    var rank = ""
+    var rankNameArr = [RankModel]()
+
 
     //MARK:- Method
     
@@ -116,8 +119,7 @@ class EditProfileVM:BaseVM {
             self.errorMessage = StringConstant.aboutYou
         }else if niceMeet.isEmptyOrWhiteSpace {
             self.errorMessage = StringConstant.niceMeet
-        }
-        else {
+        } else {
             return true
         }
         
@@ -162,6 +164,7 @@ class EditProfileVM:BaseVM {
             parameterRequest.addParameter(key: ParameterRequest.mySelfMen, value: mySelfMen)
             parameterRequest.addParameter(key: ParameterRequest.aboutYou, value: aboutYou)
             parameterRequest.addParameter(key: ParameterRequest.niceMeet, value: niceMeet)
+            parameterRequest.addParameter(key: ParameterRequest.rank, value: rank)
             
             var files : [[Data]] = [[]]
             var fileNames : [[String]] = [[]]
@@ -264,6 +267,35 @@ class EditProfileVM:BaseVM {
                     self.errorMessage = respMsg!
                     completion(false)
                 }
+        }
+    }
+    
+    func getManRankPerson(completion : @escaping (_ isSuccess: Bool) -> Void)   {
+        
+        let parameterRequest = ParameterRequest()
+        
+        parameterRequest.addParameter(key: ParameterRequest.rank, value: rank)
+        parameterRequest.addParameter(key: ParameterRequest.gender, value: gender)
+        
+        apiClient.getRankPerson(parameter: parameterRequest.parameters) { (resp, respMsg, respCode, err) in
+           
+            guard err == nil else {
+                self.errorMessage = err!
+                completion(false)
+                return
+            }
+            
+            if respCode == ResponseStatus.success {
+                
+                self.rankNameArr = RankModel.getRankName(dict: resp as! [String : Any])
+                self.errorMessage = respMsg!
+                completion(true)
+                
+            } else {
+                
+                self.errorMessage = respMsg!
+                completion(false)
+            }
         }
     }
 }

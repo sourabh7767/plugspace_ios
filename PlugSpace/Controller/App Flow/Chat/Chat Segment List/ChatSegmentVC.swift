@@ -83,11 +83,11 @@ class ChatSegmentVC: BaseVC {
                 setupPagerView()
                 
                 Like.viewModel.likeUserArr = viewModel.likeArr
-                Like.tableView.reloadData()
+                Like.tableView?.reloadData()
                 Like.noLikeData(isSearch: false)
                 
                 View.viewModel.viewProfileArr = viewModel.viewProfileArr
-                View.tableView.reloadData()
+                View.tableView?.reloadData()
                 View.NoViewData(isSearch: false)
                 
             } else {

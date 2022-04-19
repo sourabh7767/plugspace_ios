@@ -8,6 +8,7 @@
 import UIKit
 import DropDown
 import DKImagePickerController
+import MultiSlider
 
 class EditProfileVC: BaseVC {
     
@@ -47,6 +48,9 @@ class EditProfileVC: BaseVC {
     @IBOutlet private var txtmyself:UITextField!
     @IBOutlet private var txtNiceMeet:UITextField!
     
+    @IBOutlet weak var rankSlider: UIView!
+    @IBOutlet weak var rankNameLbl: UILabel!
+    
     //MARK:- Properties
     
     private var viewModel = EditProfileVM()
@@ -76,6 +80,7 @@ class EditProfileVC: BaseVC {
         setData()
         setDropDown()
         setImageController()
+        setUpMultiSlider()
     }
     
     override func viewDidLayoutSubviews() {
@@ -126,6 +131,71 @@ class EditProfileVC: BaseVC {
                 view.layer.shadowRadius = 3.0
                 view.backgroundColor = UIColor.white
             }
+        }
+    }
+    
+    
+    private func setUpMultiSlider() {
+        
+        let horizontalMultiSlider = MultiSlider()
+        
+        horizontalMultiSlider.isValueLabelRelative = true
+        horizontalMultiSlider.disabledThumbIndices = [3]
+        horizontalMultiSlider.thumbCount = Int(Double(viewModel.rank) ?? 1)
+        horizontalMultiSlider.thumbImage = UIImage(named: "sinlgeProgressBar")
+        horizontalMultiSlider.orientation = .horizontal
+        horizontalMultiSlider.minimumValue = 1
+        horizontalMultiSlider.maximumValue = 11
+        horizontalMultiSlider.outerTrackColor = .white
+        horizontalMultiSlider.value = [CGFloat(Double(viewModel.rank) ?? 1)]
+        horizontalMultiSlider.valueLabelPosition = .top
+        horizontalMultiSlider.tintColor = AppColor.Orange
+        horizontalMultiSlider.trackWidth = 6
+        horizontalMultiSlider.showsThumbImageShadow = true
+        horizontalMultiSlider.setShadow(3.0, 0.0, 1, AppColor.FontBlack, 0.2)
+        horizontalMultiSlider.addTarget(self, action: #selector(rankSliderChanged), for: .valueChanged)
+        
+        horizontalMultiSlider.snapStepSize = 1
+        horizontalMultiSlider.valueLabelColor = #colorLiteral(red: 0.9764705882, green: 0.4156862745, blue: 0.1176470588, alpha: 1)
+        horizontalMultiSlider.valueLabelFont = UIFont(name: AppFont.bold, size: 20)
+        
+        rankSlider.addConstrainedSubview(horizontalMultiSlider, constrain: .leftMargin, .rightMargin, .bottomMargin)
+        rankSlider.layoutMargins = UIEdgeInsets(top: -30, left: 16, bottom: -10, right: 16)
+        rankSliderChanged(horizontalMultiSlider)
+    }
+    
+    @objc func rankSliderChanged(_ slider: MultiSlider) {
+        
+        viewModel.rank = String(format: "%.0f", slider.value[0])
+        viewModel.gender = txtGender.text!
+        if viewModel.rank.isEmptyOrWhiteSpace {
+            self.errorAlert(message: StringConstant.rankUser)
+            return
+        }
+        viewModel.getManRankPerson { [self] (isSuccess) in
+            
+            if isSuccess {
+                getRankPerson()
+                
+            } else {
+                alertWith(message: viewModel.errorMessage)
+            }
+        }
+    }
+    
+    
+    func getRankPerson() {
+        rankNameLbl.text?.removeAll()
+        if viewModel.rankNameArr.first?.data.isEmpty == false {
+            var str = [String]()
+            for (index, name) in viewModel.rankNameArr[0].data.enumerated() {
+                    str.append("\(index + 1). \(name)")
+            }
+            rankNameLbl.text = str.joined(separator: ", ")
+            rankNameLbl.isHidden = false
+        } else {
+            // lblName.text = "The rankers not found which you are selected!"
+            rankNameLbl.isHidden = true
         }
     }
     
@@ -276,6 +346,8 @@ class EditProfileVC: BaseVC {
         txtAgeRange.text = userData.ageRangeMarriage
         txtNiceMeet.text = userData.niceMeet
         aboutTextView.text = userData.aboutYou
+        viewModel.rank = userData.menRank
+        
     }
     
     func openPopUp() {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class HomeVC: BaseVC {
     
@@ -138,7 +139,6 @@ class HomeVC: BaseVC {
         UserDataView.isHidden = false
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
-            
             self.setData()
         })
     }
@@ -225,7 +225,103 @@ class HomeVC: BaseVC {
             alertWith(message: viewModel.errorMessage)
             return
         }
+        if viewModel.userdata[0].requestSent == 1 {
+            let alert = UIAlertController(title: AppName, message: "Accept request with", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Send a message", style: .default, handler: { _ in
+                alert.dismiss(animated: true)
+                self.getMessages()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Go to match screen", style: .default, handler: { _ in
+                alert.dismiss(animated: true)
+                self.likeUser(nil, nil)
+                let tab = (self.parent as? TabBarVC)
+                tab?.changeSelectedTab(at: 2)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    (tab?.viewModel.selectedVC as? ChatSegmentVC)?.segmentedPager.showPage(at: 2, animated: true)
+                }
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: AppName, message: "Would you like to add comment?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Add Comment", style: .default, handler: { _ in
+                alert.dismiss(animated: true)
+                self.addCommentAlert()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Like Only", style: .default, handler: { _ in
+                alert.dismiss(animated: true)
+                self.likeUser(nil, nil)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
         
+    }
+    
+    func getMessages() {
+        viewModel.getDefaultMessages { isSuccess in
+            if !isSuccess.isEmpty {
+                let alert = UIAlertController(title: AppName, message: "Please choose message or type a message", preferredStyle: .alert)
+                alert.addTextField { textField in
+                    textField.placeholder = "Enter message."
+                }
+                alert.addAction(UIAlertAction(title: "Send Message", style: .destructive, handler: { _ in
+                    if alert.textFields?.first?.text?.trimmed().isEmpty ?? true {
+                        self.getMessages()
+                    } else {
+                        let msg = alert.textFields?.first?.text ?? ""
+                        self.sendMessageAndChat(msg)
+                    }
+                }))
+                
+                for message in isSuccess {
+                    alert.addAction(UIAlertAction(title: message, style: .default, handler: { _ in
+                        self.sendMessageAndChat(message)
+                    }))
+                }
+           
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                self.alertWith(message: self.viewModel.errorMessage)
+            }
+        }
+    }
+    
+    func sendMessageAndChat(_ text: String) {
+        self.likeUser(nil, text)
+        let tab = (self.parent as? TabBarVC)
+        tab?.changeSelectedTab(at: 2)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            let chatSeg = (tab?.viewModel.selectedVC as? ChatSegmentVC)
+            chatSeg?.segmentedPager.showPage(at: 2, animated: true)
+            let vc = UIStoryboard.instantiateVC(ChatVC.self,.Home)
+            
+            vc.conversationData = ChatListModel(dict: ["message_status" : "1" ,"message": text,"name": self.viewModel.userdata[0].name, "user_id": self.viewModel.userdata[0].userId, "time": ServerValue.timestamp(), "device_type": "iOS","device_token":  ""])
+            chatSeg?.show(vc, sender: nil)
+        }
+        
+    }
+    
+    func addCommentAlert() {
+        let alert = UIAlertController(title: AppName, message: "Please add comment", preferredStyle: .alert)
+        alert.addTextField { textfld in
+            textfld.placeholder = "Add Comment"
+        }
+        alert.addAction(UIAlertAction(title: "Comment", style: .default, handler: { _ in
+            if let text = alert.textFields?.first?.text, !text.trimmed().isEmpty {
+                self.likeUser(text, nil)
+                alert.dismiss(animated: true)
+            } else {
+                self.addCommentAlert()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func likeUser(_ comment: String?, _ message: String?) {
         btnLike.tintColor = viewModel.userdata[0].isLike == "1" ? .white : .red
         
         viewModel.likeType = viewModel.userdata[0].isLike == "1" ? "2" : "1"
@@ -236,13 +332,13 @@ class HomeVC: BaseVC {
             return
         }
         
-        viewModel.profileLikeDislike { (isSuccess) in
+        viewModel.profileLikeDislike(comment, message) { (isSuccess) in
             
             if isSuccess {
                 self.apiCalling()
-//                self.alertWith(message: self.viewModel.errorMessage)
+                //                self.alertWith(message: self.viewModel.errorMessage)
             } else {
-                    self.alertWith(message: self.viewModel.errorMessage)
+                self.alertWith(message: self.viewModel.errorMessage)
             }
         }
     }
@@ -264,7 +360,7 @@ class HomeVC: BaseVC {
             return
         }
         
-        viewModel.profileLikeDislike { (isSuccess) in
+        viewModel.profileLikeDislike(nil, nil) { (isSuccess) in
             
             if isSuccess {
                 self.apiCalling()

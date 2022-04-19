@@ -151,6 +151,10 @@ class APIClient {
         return APIManager.postRequest(url: APIS.AppFlow.sendNotification,parameters: parameter, completion: completion)
     }
     
+    func getDefaultMessages(completion: @escaping APICallback) {
+        return APIManager.getRequest(url: "https://www.plugspace.io/api/getMessages", completion: completion)
+    }
+    
 //    func checkMail(parameter: [String:Any] ,completion: @escaping APICallback)  {
 //        return APIManager.postRequest(url: APIS.Common.CHECKEMAIL, parameters: parameter, completion: completion)
 //    }

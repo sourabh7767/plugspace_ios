@@ -26,7 +26,10 @@ class LikeTableCell: UITableViewCell {
     func setData(data:likeDetailsModel)  {
         imgProfile.sd_setImage(with: URL(string: data.profile), placeholderImage: UIImage(named: "img_nt_1"), options: .retryFailed)
         lblName.text = data.name + ", \(data.age)"
-        lblProfession.text = data.jobTitle
+        if (!data.jobTitle.isEmpty && !data.comment.isEmpty) {
+            lblName.text = "\(lblName.text ?? ""), \(data.jobTitle)"
+        }
+        lblProfession.text = data.comment.isEmpty ? data.jobTitle : data.comment
         lblTime.text = data.dateTime
     }
     

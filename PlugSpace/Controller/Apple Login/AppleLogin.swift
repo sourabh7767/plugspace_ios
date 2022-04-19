@@ -64,23 +64,15 @@ extension AppleData: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            let userIdentifier = appleIDCredential.user
-            
-            if isLogin {
+                let userIdentifier = appleIDCredential.user
+                
                 viewLoginModel.isApple = "1"
                 viewLoginModel.appleId = userIdentifier
                 viewLoginModel.isInsta = "0"
                 viewLoginModel.instaId = "0"
-            } else {
-                SignUPVM.shared.isApple = "1"
-                SignUPVM.shared.appleId = userIdentifier
-                SignUPVM.shared.isInsta = "0"
-                SignUPVM.shared.instaId = "0"
-            }
-            
-            viewModel.delegate = self
-            isLogin ? viewModel.delegate?.instaLoginProcessCompleted(isSuccess: true) : viewModel.delegate?.instaSignupProcessCompleted(isSuccess: true)
-            
+                viewModel.delegate = self
+                viewModel.delegate?.instaLoginProcessCompleted(isSuccess: true)
+                
         case let passwordCredential as ASPasswordCredential:
         
             // Sign in using an existing iCloud Keychain credential.
@@ -153,11 +145,7 @@ extension AppleData: ASAuthorizationControllerPresentationContextProviding {
 extension AppleData: SignUpVMDelegate {
     
     func instaSignupProcessCompleted(isSuccess: Bool) {
-        if isSuccess {
-             (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.pushVC(GenderVC.self)
-        } else {
-             (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.alertWith(message: viewModel.errorMessage)
-        }
+      
     }
     
     func instaLoginProcessCompleted(isSuccess: Bool) {
@@ -170,7 +158,11 @@ extension AppleData: SignUpVMDelegate {
                     appdelegate.goToHomeVc()
                     AppPrefsManager.shared.setIsUserLogin(isUserLogin: true)
                 } else {
+                    if viewLoginModel.errorMessage.contains("user is not registered") {
+                        (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.pushVC(GenderVC.self)
+                    } else {
                      (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.alertWith(message: viewLoginModel.errorMessage)
+                    }
                 }
             }
         } else {

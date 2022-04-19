@@ -192,24 +192,14 @@ class APIManager {
                 completion(nil, nil,response.response?.statusCode,response.error?.localizedDescription)
                 return
             }
-                DLog("Response Error: ", response.error)
-                DLog("Response JSON: ", response.value)
-                DLog("response.request: ", response.request?.allHTTPHeaderFields)
-                DLog("Response Status Code: ", response.response?.statusCode)
+            DLog("Response Error: ", response.error)
+            DLog("Response JSON: ", response.value)
+            DLog("response.request: ", response.request?.allHTTPHeaderFields)
+            DLog("Response Status Code: ", response.response?.statusCode)
             
             if let res = response.value as? [String:Any] {
-                print(res)
-                let msg = res["ResponseMsg"] as? String ?? ""
-                let code = res["ResponseCode"] as? Int ?? -1
-                _ = res["Result"] as? String ?? "false"
-                if code != 0 {
-                    
-                    completion(res,msg,code,nil)
-                    return
-                }
-                else {
-                    completion(nil, nil,code,msg)
-                }
+                completion(res,"",1,nil)
+                return
             }
         }
     }

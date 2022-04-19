@@ -39,6 +39,7 @@ class LikeVC: BaseVC {
     //MARK:- Function
     
     func noLikeData(isSearch:Bool) {
+        guard tableView != nil else {return}
         if isSearch {
             removeNewNoDataViewFrom(containerView: tableView)
             if viewModel.likeUserSearchArr.count == 0 {

@@ -20,7 +20,7 @@ class TabBarVC: BaseVC {
     
     //MARK:-   Properties
     
-    private var viewModel = TabBarVM()
+    var viewModel = TabBarVM()
     private var selectImage = UIView.getView(viewT: SelectImageVC.self)
     
     //MARK:-   VC Methods
@@ -138,21 +138,15 @@ class TabBarVC: BaseVC {
     //MARK:-  IBAction
     
     @IBAction func btnTabbarAction(_ sender: UIButton) {
-        
-//        if !isDevelopmentMode {
-//            guard viewModel.selectedIndex != sender.tag else {
-//                btnTab[viewModel.selectedIndex].isUserInteractionEnabled = false
-//                return
-//            }
-//
-//            btnTab[viewModel.selectedIndex].isUserInteractionEnabled = true
-//        }
-        
-        viewModel.selectedIndex = sender.tag
-        selectVC(viewModel.vcIds[sender.tag])
+        changeSelectedTab(at: sender.tag)
+    }
+    
+    func changeSelectedTab(at ind: Int) {
+        viewModel.selectedIndex = ind
+        selectVC(viewModel.vcIds[ind])
         btnTab.enumerated().forEach { (index, _ ) in
             
-            if index == sender.tag {
+            if index == ind {
                 btnTab[index].setImage(UIImage(named: viewModel.selectedArr[index]), for: .normal)
             } else {
                 btnTab[index].setImage(UIImage(named: viewModel.normalArr[index]), for: .normal)

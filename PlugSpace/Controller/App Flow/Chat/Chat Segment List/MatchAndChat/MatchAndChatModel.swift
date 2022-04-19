@@ -78,9 +78,10 @@ class likeDetailsModel {
     var jobTitle = ""
     var age = ""
     var profile = ""
+    var comment = ""
     
     init(dict:[String:Any]) {
-        
+        comment = dict["comment"] as? String ?? ""
         likeId = dict["like_id"] as? String ?? ""
         userId = dict["user_id"] as? String ?? ""
         likeUserId = dict["like_user_id"] as? String ?? ""

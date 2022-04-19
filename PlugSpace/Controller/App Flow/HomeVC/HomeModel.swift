@@ -11,41 +11,42 @@ class HomeModel {
     
     //MARK:- Properties
     
-     var userId = ""
-     var name = ""
-     var ccode = ""
-     var phone = ""
-     var gender = ""
-     var rank = ""
-     var isGeoLocation = ""
-     var isApple = ""
-     var appleId = ""
-     var isInsta = ""
-     var instaId = ""
-     var height = ""
-     var weight = ""
-     var educationStatus = ""
-     var dob = ""
-     var children = ""
-     var wantChildrens = ""
-     var marringRace = ""
-     var relationshipStatus = ""
-     var ethinicity = ""
-     var companyName = ""
-     var jobTitle = ""
-     var makeOver = ""
-     var dressSize = ""
-     var signiatBills = ""
-     var timesOfEngaged = ""
-     var yourBodyTatto = ""
-     var ageRangeMarriage = ""
-     var mySelfMen = ""
-     var aboutYou = ""
-     var niceMeet = ""
-     var mediaDetail = [UserMediaDetail]()
-     var location = ""
-     var age = ""
-     var isLike = ""
+    var userId = ""
+    var name = ""
+    var ccode = ""
+    var phone = ""
+    var gender = ""
+    var rank = ""
+    var isGeoLocation = ""
+    var isApple = ""
+    var appleId = ""
+    var isInsta = ""
+    var instaId = ""
+    var height = ""
+    var weight = ""
+    var educationStatus = ""
+    var dob = ""
+    var children = ""
+    var wantChildrens = ""
+    var marringRace = ""
+    var relationshipStatus = ""
+    var ethinicity = ""
+    var companyName = ""
+    var jobTitle = ""
+    var makeOver = ""
+    var dressSize = ""
+    var signiatBills = ""
+    var timesOfEngaged = ""
+    var yourBodyTatto = ""
+    var ageRangeMarriage = ""
+    var mySelfMen = ""
+    var aboutYou = ""
+    var niceMeet = ""
+    var mediaDetail = [UserMediaDetail]()
+    var location = ""
+    var age = ""
+    var isLike = ""
+    var requestSent = 0
     
     init(dict:[String:Any]) {
         
@@ -84,6 +85,7 @@ class HomeModel {
         location = dict["location"] as? String ?? ""
         age = dict["age"] as? String ?? ""
         isLike = dict["is_like"] as? String ?? ""
+        requestSent = dict["request_sent"] as? Int ?? 0
     }
     
     class func getHomeDetails(data: [Any]) -> [HomeModel] {
@@ -129,11 +131,11 @@ class UserMediaDetail {
 
 class StoryDetailsModel {
     
-     var storyId = ""
-     var userId = ""
-     var name = ""
-     var profile = ""
-     var isShowStory = ""
+    var storyId = ""
+    var userId = ""
+    var name = ""
+    var profile = ""
+    var isShowStory = ""
     
     init(dict:[String:Any]) {
         storyId = dict["story_id"] as? String ?? ""
@@ -153,21 +155,21 @@ class StoryDetailsModel {
 }
 
 class NotificationDetailsModel {
-
-     var cellType = ""
-     var notiId = ""
-     var userId = ""
-     var message = ""
-     var dateTime = ""
-     var name = ""
-     var profile = ""
-     var createdDate = ""
-     var time : Int64
-     var key: String
-     var otherId = ""
+    
+    var cellType = ""
+    var notiId = ""
+    var userId = ""
+    var message = ""
+    var dateTime = ""
+    var name = ""
+    var profile = ""
+    var createdDate = ""
+    var time : Int64
+    var key: String
+    var otherId = ""
     
     init(key: String,dict:[String:Any]) {
-      
+        
         self.key = key
         notiId = dict["noti_id"] as? String ?? ""
         userId = dict["user_id"] as? String ?? ""
@@ -184,7 +186,7 @@ class NotificationDetailsModel {
     class func getNotificationDetails(data: [Any]) -> [NotificationDetailsModel] {
         var temp = [NotificationDetailsModel]()
         for data in data {
-           
+            
             temp.append(NotificationDetailsModel(key: "", dict: data as? [String : Any] ?? [String:Any]()))
             
         }

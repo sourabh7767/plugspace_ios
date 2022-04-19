@@ -62,13 +62,15 @@ class HomeVM:BaseVM {
         return false
     }
     
-    func profileLikeDislike(completion : @escaping (_ isSuccess: Bool) -> Void) {
+    func profileLikeDislike(_ comment: String?, _ message: String?, completion : @escaping (_ isSuccess: Bool) -> Void) {
         
         let parameterRequest = ParameterRequest()
         
         parameterRequest.addParameter(key: ParameterRequest.userId, value: userId.userId)
         parameterRequest.addParameter(key: ParameterRequest.likeUserId, value: likeUserId)
         parameterRequest.addParameter(key: ParameterRequest.likeType, value: likeType)
+        parameterRequest.addParameter(key: "comment", value: comment)
+        parameterRequest.addParameter(key: "message", value: message)
         
         apiClient.profileLikeDislike(parameter: parameterRequest.parameters) { (resp, respMsg, respCode, err) in
             guard err == nil else {
@@ -85,6 +87,28 @@ class HomeVM:BaseVM {
                 
                 self.errorMessage = respMsg!
                 completion(false)
+            }
+        }
+    }
+    
+    func getDefaultMessages(completion: @escaping (_ isSuccess: [String]) -> ()) {
+        apiClient.getDefaultMessages { response, responsemessage, resCode, errorStr in
+            guard errorStr == nil else {
+                self.errorMessage = errorStr!
+                completion([])
+                return
+            }
+            if resCode == ResponseStatus.success {
+                if let respDict = response as? [String:Any] {
+                    let messages = respDict["message"] as? [[String: Any]] ?? []
+                    let msgs = messages.map({$0["message"] as? String ?? ""}).filter({!$0.isEmpty})
+                    completion(msgs)
+                }
+                
+            }else {
+                
+                self.errorMessage = responsemessage ?? ""
+                completion([])
             }
         }
     }

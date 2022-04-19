@@ -60,7 +60,6 @@ class RankVC: BaseVC {
     
     private func callRankPersonAPi() {
         
-        viewModel.rank = "1"
         viewModel.gender = SignUPVM.shared.gender
         
         guard viewModel.validation() else {
