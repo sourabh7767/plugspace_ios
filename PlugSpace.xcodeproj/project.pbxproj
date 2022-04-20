@@ -209,6 +209,7 @@
 		04EC7F2727A00B0D00EDE5A3 /* CountryExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC7F2627A00B0D00EDE5A3 /* CountryExtention.swift */; };
 		04FE567B27ACE15F00C51969 /* AudioPleyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE567A27ACE15F00C51969 /* AudioPleyer.swift */; };
 		16DD98E1F0E374D85E67BB43 /* Pods_PlugSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6BFEF713AC9F10BF8A25A4 /* Pods_PlugSpace.framework */; };
+		4B3344CB280FC7AC00CAA79A /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3344CA280FC7AC00CAA79A /* CommentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -417,6 +418,7 @@
 		04EC7F2627A00B0D00EDE5A3 /* CountryExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryExtention.swift; sourceTree = "<group>"; };
 		04FE567A27ACE15F00C51969 /* AudioPleyer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPleyer.swift; sourceTree = "<group>"; };
 		259C9CD223E73AD3818141D8 /* Pods-PlugSpace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlugSpace.debug.xcconfig"; path = "Target Support Files/Pods-PlugSpace/Pods-PlugSpace.debug.xcconfig"; sourceTree = "<group>"; };
+		4B3344CA280FC7AC00CAA79A /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		9A6BFEF713AC9F10BF8A25A4 /* Pods_PlugSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlugSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C768DFBEC885BDE1B42D823B /* Pods-PlugSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlugSpace.release.xcconfig"; path = "Target Support Files/Pods-PlugSpace/Pods-PlugSpace.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1364,6 +1366,7 @@
 			isa = PBXGroup;
 			children = (
 				04BC04A127BE3FBA00A02624 /* No Data Found VIew */,
+				4B3344CA280FC7AC00CAA79A /* CommentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1791,6 +1794,7 @@
 				04D9F05B2769E71100F0C16F /* LocationManager.swift in Sources */,
 				0494372D2751EE1800BE58D1 /* SettingVC.swift in Sources */,
 				04A40C012767426500798034 /* LoginModel.swift in Sources */,
+				4B3344CB280FC7AC00CAA79A /* CommentView.swift in Sources */,
 				04DA7D1C2743DFB500672E96 /* EducationStatusVC.swift in Sources */,
 				04BC044227BE175B00A02624 /* StoryVideoTVCell.swift in Sources */,
 				04216A7727AA7B4300AFB3FB /* VideoPlayer.swift in Sources */,
@@ -2032,7 +2036,7 @@
 				CODE_SIGN_ENTITLEMENTS = PlugSpace/PlugSpace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = FY68T47L8H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2068,7 +2072,7 @@
 				CODE_SIGN_ENTITLEMENTS = PlugSpace/PlugSpace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = FY68T47L8H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

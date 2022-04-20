@@ -305,20 +305,10 @@ class HomeVC: BaseVC {
     }
     
     func addCommentAlert() {
-        let alert = UIAlertController(title: AppName, message: "Please add comment", preferredStyle: .alert)
-        alert.addTextField { textfld in
-            textfld.placeholder = "Add Comment"
+        presentCommentView(from: self) { comment in
+            self.likeUser(comment, nil)
         }
-        alert.addAction(UIAlertAction(title: "Comment", style: .default, handler: { _ in
-            if let text = alert.textFields?.first?.text, !text.trimmed().isEmpty {
-                self.likeUser(text, nil)
-                alert.dismiss(animated: true)
-            } else {
-                self.addCommentAlert()
-            }
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        self.present(alert, animated: true, completion: nil)
+
     }
     
     func likeUser(_ comment: String?, _ message: String?) {
