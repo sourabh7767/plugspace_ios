@@ -34,25 +34,23 @@ struct CommentView: View {
         VStack {
          Spacer()
             VStack {
-                Text(AppName)
-                    .font(.system(size: 18, weight: .bold))
                 Text("Please add comment")
+                    .font(.system(size: 18, weight: .bold))
                 TextView(text: $comment)
-                .frame(maxWidth: .infinity, minHeight: 20, maxHeight: 60, alignment: .leading)
-                .shadow(radius: 1)
+                    .frame(maxWidth: .infinity, minHeight: 20, maxHeight: 80, alignment: .leading)
+                    .shadow(radius: 1)
                 HStack {
-                    Button {
-                        commentTapped(comment)
-                    } label: {
-                        Text("Comment")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    
                     Button(action: dismissAction) {
                         Text("Cancel")
                             .foregroundColor(.red)
                     }
+                    .frame(maxWidth: .infinity, alignment: .center)
                     
+                    Button {
+                        commentTapped(comment)
+                    } label: {
+                        Text("send")
+                    }
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
                 
