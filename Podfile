@@ -21,6 +21,9 @@ target 'PlugSpace' do
    pod 'Firebase/Storage'
    pod 'DKImagePickerController'
    pod 'CountryPickerView'
+   pod "RecordButton"
+   pod 'KDCircularProgress'
+   
   # Pods for PlugSpace
 
 end

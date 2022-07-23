@@ -23,9 +23,11 @@ class UserBasicInfoCell: UICollectionViewCell {
     //MARK:- Method
     func setdata(img:String,title:String) {
         
-        if title != "" {
+     //   if title != "" {
             imgIcon.image = img != "" ? UIImage(named: img) : nil
             lblDetail.text = title != "" ? title : ""
-        }
+       // }
+
+        
     }
 }

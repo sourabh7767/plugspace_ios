@@ -13,7 +13,7 @@ class SelectedImageVM: BaseVM {
     //MARK:- Properties
     
     var storyImage : Data!
-    var storyVideo : Data!
+    var storyVideo = [Data]()
     var description = ""
     let userId = SignUpModel(dict: AppPrefsManager.shared.getUserData() as? [String : Any] ?? [String:Any]())
     
@@ -33,7 +33,7 @@ class SelectedImageVM: BaseVM {
     func createStory(completion : @escaping (_ isSuccess: Bool) -> Void) {
         
         let parameterRequest = ParameterRequest()
-        
+       /*
         parameterRequest.addParameter(key: ParameterRequest.userId, value: userId.userId)
         storyImage != nil ? parameterRequest.addParameter(key: ParameterRequest.Multimedia, value: storyImage) : parameterRequest.addParameter(key: ParameterRequest.Multimedia, value: storyVideo)
         
@@ -49,7 +49,33 @@ class SelectedImageVM: BaseVM {
             files.append([storyVideo])
             fileNames.append(["Video.mp4"])
             fileKeys.append(ParameterRequest.Multimedia)
+        }*/
+        
+        parameterRequest.addParameter(key: ParameterRequest.userId, value: userId.userId)
+        storyImage != nil ? parameterRequest.addParameter(key: ParameterRequest.Multimedia, value: storyImage) : parameterRequest.addParameter(key: ParameterRequest.Multimedia, value: storyVideo)
+        
+        var files : [[Data]] = [[]]
+        var fileNames : [[String]] = [[]]
+        var fileKeys : [String] = [""]
+        
+        if storyImage != nil {
+            files.append([storyImage])
+            fileNames.append(["image.jpg"])
+            fileKeys.append(ParameterRequest.Multimedia)
+        } else if storyVideo.count  > 0 {
+           
+            for (_,objVideo) in storyVideo.enumerated()
+            {
+            files.append([objVideo])
+            fileNames.append(["Video.mp4"])
+            fileKeys.append(ParameterRequest.Multimedia)
+            
+            }
         }
+        
+        
+        
+        
         
         apiClient.createStory(parameters: parameterRequest.parameters, files: files, fileNames: fileNames, fileKeys: fileKeys) { [self] (resp, respMsg, respCode, err) in
             guard err == nil else {
@@ -95,10 +121,14 @@ class SelectedImageVM: BaseVM {
             files.append([storyImage])
             fileNames.append(["image.jpg"])
             fileKeys.append(ParameterRequest.feedImage)
-        } else if storyVideo != nil {
-            files.append([storyVideo])
+        } else if storyVideo.count > 0 {
+            for (_,objVideo) in storyVideo.enumerated()
+            {
+            files.append([objVideo])
             fileNames.append(["Video.mp4"])
-            fileKeys.append(ParameterRequest.feedImage)
+            fileKeys.append(ParameterRequest.Multimedia)
+            
+            }
         }
         
         apiClient.createFeed(parameters: parameterRequest.parameters, files: files, fileNames: fileNames, fileKeys: fileKeys) { [self] (resp, respMsg, respCode, err) in

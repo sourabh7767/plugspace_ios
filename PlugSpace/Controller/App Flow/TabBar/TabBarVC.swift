@@ -160,16 +160,17 @@ class TabBarVC: BaseVC {
             
             switch index {
             
+//            case 0 :
+//                present(viewModel.imagePickerController, animated: true)
+//                break
             case 0 :
-                present(viewModel.imagePickerController, animated: true)
+                openAddStroy()
+           // openUIImagePickerController(for: viewModel.imagePicker, type: .cameraVideo)
                 break
             case 1 :
                 openUIImagePickerController(for: viewModel.imagePicker, type: .photoLibrary)
                 break
             case 2 :
-                openUIImagePickerController(for: viewModel.imagePicker, type: .cameraVideo)
-                break
-            case 3 :
                 openUIImagePickerController(for: viewModel.imagePicker, type: .videoPhotoLibrary)
                 break
             default :
@@ -180,6 +181,11 @@ class TabBarVC: BaseVC {
     }
 }
 
+func openAddStroy()  {
+    
+    let vc = UIStoryboard.instantiateVC(AddStoryVC.self, .Home)
+    (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.navigationController?.pushViewController(vc, animated: true)
+}
 
 //MARK:- Image piker
 
@@ -210,8 +216,8 @@ extension TabBarVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             
             do {
                 let videoData = try Data(contentsOf: videoUrl)
-                selectImage.viewModel.storyVideo = videoData
-            
+               // selectImage.viewModel.storyVideo = videoData
+                selectImage.viewModel.storyVideo.append(videoData)
                 } catch let error {
                         print("*** Error : \(error.localizedDescription)")
                 }

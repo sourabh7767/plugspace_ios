@@ -62,11 +62,15 @@ class UserPreviewPostCell: UITableViewCell {
     }
     
     func setData(data:MediaDetails) {
-        
-        if data.media_type == "image" || data.type == "feed" {
+        if data.type == "profile" {
+            imgProfile.sd_setImage(with: URL(string: data.profile), placeholderImage: UIImage(named: "home_1"), options: .retryFailed)
+            lblCaption.text = data.description
+    }
+    else if data.media_type == "image" || data.type == "feed" {
                 imgProfile.sd_setImage(with: URL(string: data.feedImage), placeholderImage: UIImage(named: "home_1"), options: .retryFailed)
                 lblCaption.text = data.description
-        } else {
+        }
+        else {
                 imgProfile.image = getThumnailImage(videoURL: data.feedImage)
                 lblCaption.text = data.description
                 btnPlay.isHidden = false

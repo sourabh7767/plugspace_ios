@@ -34,10 +34,13 @@ class PreviewVM: BaseVM {
     var indexPath:IndexPath!
     var basicInfoArr = [String]()
     var removeMediaId = ""
+    var MediaId = ""
     var type = ""
-    var feedImage = Data()
+    var feedImage : Data?
+    var profileImg : Data?
     var feedId = ""
     var userId = ""
+    var isEdit = Bool()
     let imagePickerController = DKImagePickerController()
     let CurrentUserId = SignUpModel.init(dict: AppPrefsManager.shared.getUserData() as? [String : Any] ?? [String:Any]())
     
@@ -45,22 +48,39 @@ class PreviewVM: BaseVM {
     
     func previewUpdatePro(completion : @escaping (_ isSuccess: Bool) -> Void) {
             
-            let parameterRequest = ParameterRequest()
+        let parameterRequest = ParameterRequest()
         
         parameterRequest.addParameter(key: ParameterRequest.userId, value:  userId != "" ? userId : CurrentUserId.userId)
         parameterRequest.addParameter(key: ParameterRequest.removeMediaId, value: removeMediaId)
         parameterRequest.addParameter(key: ParameterRequest.type, value: type)
-        parameterRequest.addParameter(key: ParameterRequest.feedImage, value: feedImage)
         parameterRequest.addParameter(key: ParameterRequest.feedId, value: feedId)
-            
+       
+        
             var files : [[Data]] = [[]]
             var fileNames : [[String]] = [[]]
             var fileKeys : [String] = [""]
-            
-                files.append([feedImage])
+        if type == "profile" && isEdit == true
+        {
+            if let imgdata = profileImg
+            {
+            files.append([imgdata])
+            fileNames.append(["image.jpg"])
+            parameterRequest.addParameter(key: ParameterRequest.profileImage, value: profileImg)
+            parameterRequest.addParameter(key: ParameterRequest.MediaId, value: MediaId)
+            fileKeys.append(ParameterRequest.profileImage)
+            }
+        }
+        else if type == "feed" && isEdit == true{
+            if let imgdata = feedImage
+            {
+                files.append([imgdata])
                 fileNames.append(["image.jpg"])
                 fileKeys.append(ParameterRequest.feedImage)
-            
+            }
+               parameterRequest.addParameter(key: ParameterRequest.feedImage, value: feedImage)
+              
+        }
+     
             apiClient.previewUpdatePro(parameters: parameterRequest.parameters, files: files, fileNames: fileNames, fileKeys: fileKeys) { [self] (resp, respMsg, respCode, err) in
                 guard err == nil else {
                     self.errorMessage = err!
@@ -75,7 +95,7 @@ class PreviewVM: BaseVM {
                         
 //                  self.UserData = SignUpModel(dict: respDict["data"] as? [String : Any] ?? [String:Any]())
 //                  AppPrefsManager.shared.saveAuthToken(Token: userDataPreView.token)
-                        
+                    AppPrefsManager.shared.setUserData(obj: respDict["data"] as? [String:Any] ?? [String:Any]())
                     userDataPreView = SignUpModel(dict: respDict["data"] as? [String : Any] ?? [String:Any]())
 
                     }
@@ -87,7 +107,11 @@ class PreviewVM: BaseVM {
         }
     }
     
+    
+  
     func getMediaDetails(indexpath:IndexPath) -> MediaDetails {
         return userDataPreView.mediaDetail[indexpath.row]
     }
+    
 }
+

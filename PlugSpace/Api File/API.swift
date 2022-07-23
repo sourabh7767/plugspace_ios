@@ -75,6 +75,14 @@ struct APIS {
         
         static let sendNotification               =  BASE_URL + "testPush"
         
-        //MARK:-
+        //MARK:-saveProfile
+        
+        
+        
+        static let saveProfile               =  BASE_URL + "save/profile"
+        static let getSavedProfile           =  BASE_URL + "get/saved/profile"
+        static let blockUser               =  BASE_URL + "block-user"
+   
+        
     }
 }

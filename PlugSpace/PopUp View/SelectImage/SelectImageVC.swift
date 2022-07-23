@@ -7,7 +7,7 @@
 
 import UIKit
 import AVKit
-
+import SVProgressHUD
 class SelectImageVC: UIView {
     
     //MARK:- Outlets
@@ -18,8 +18,10 @@ class SelectImageVC: UIView {
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var viewStoryAndFeed: UIView!
     
+    @IBOutlet weak var btnBack: UIButton!
     //MARK:- Properties
-    
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+
     var clickImage:UIImage?
     let viewModel = SelectedImageVM()
     var videoURL: URL!
@@ -74,11 +76,19 @@ class SelectImageVC: UIView {
         
         viewStoryAndFeed.isHidden = true
         
-        player != nil ?  self.stopVideo() : nil
+        activityIndicator.center = CGPoint(x: btnBack.bounds.size.width/2, y: btnBack.bounds.size.height/2)
+        activityIndicator.color = AppColor.Orange
+        btnBack.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         
+        player != nil ?  self.stopVideo() : nil
+        setMsgWithSVProgress("Uploading...")
         viewModel.createStory { [self] (isSuccess) in
             
             if isSuccess {
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
+                    self.activityIndicator.stopAnimating()
+                }
                 closeXIB(XIB: self)
 //                (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.alertWith(message: StringConstant.uploadImageFeed)
                 (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.first?.showToast(message: StringConstant.uploadImageFeed, y: 0, font: UIFont(name: AppFont.reguler, size: setCustomFont(18))!)
@@ -95,8 +105,19 @@ class SelectImageVC: UIView {
         player != nil ?  self.stopVideo() : nil
         
         let vc = UIStoryboard.instantiateVC(AddDescriptionVC.self, .Home)
-        vc.feedImage = clickImage != nil ? clickImage!.jpegData(compressionQuality: 0.5)! : viewModel.storyVideo
-      
+      //  vc.feedImage = clickImage != nil ? clickImage!.jpegData(compressionQuality: 0.5)! : viewModel.storyVideo
+    
+        if clickImage != nil
+        {
+            vc.feedImage = clickImage!.jpegData(compressionQuality: 0.5)!
+        }
+        else
+        {
+            guard let videoAsFeed = viewModel.storyVideo.first else { return  }
+            vc.feedImage = videoAsFeed
+        }
+        
+        
         (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -101,7 +101,8 @@ class ParameterRequest {
     //MARK:- CreateFeed
     static let description = "description"
     static let feedImage = "feed_image"
-        
+    static let profileImage = "profile"
+    static let MediaId = "media_id"
     //MARK:- Comment
     
     static let comment = "comment"
@@ -124,6 +125,12 @@ class ParameterRequest {
     //PushNoti
     static let kToken = "Token"
 
+    //saveProfile
+    static let savedUserId = "saved_user_id"
+    static let blockUserId = "blocked_id"
+    
+    
+    
     
     func addParameter(key: String, value: Any?) {
         parameters[key] = value

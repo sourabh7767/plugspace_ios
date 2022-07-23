@@ -136,14 +136,19 @@ class StoryDetailsModel {
     var name = ""
     var profile = ""
     var isShowStory = ""
-    
+    var story_view_count = 0
+    var storyMediaDetail = [StoryDetails]()
     init(dict:[String:Any]) {
         storyId = dict["story_id"] as? String ?? ""
         userId = dict["user_id"] as? String ?? ""
         name = dict["name"] as? String ?? ""
         profile = dict["profile"] as? String ?? ""
         isShowStory = dict["is_show_story"] as? String ?? ""
+        story_view_count = dict["story_view_count"] as? Int ?? 0
+        storyMediaDetail = StoryDetails.getStoryDetails(data: dict["media"] as? [Any] ?? [Any]())
     }
+    
+
     
     class func getStoryDetails(data: [Any]) -> [StoryDetailsModel] {
         var temp = [StoryDetailsModel]()

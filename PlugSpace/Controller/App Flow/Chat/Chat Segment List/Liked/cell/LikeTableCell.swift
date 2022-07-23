@@ -33,4 +33,35 @@ class LikeTableCell: UITableViewCell {
         lblTime.text = data.dateTime
     }
     
+    
+    
+    func setDataForSavedProfile(data:SavedProfileModel)  {
+        imgProfile.sd_setImage(with: URL(string: data.profile), placeholderImage: UIImage(named: "img_nt_1"), options: .retryFailed)
+        lblName.text = data.name
+        lblProfession.text =  data.age + " Years"//data.comment.isEmpty ? data.jobTitle : data.comment
+        lblTime.text = ""//getFormattedDate(string: data.dateTime, formatter: "MMM dd,yyyy")
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+
+
+     func getFormattedDate(string: String , formatter:String) -> String{
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+        
+        let date: Date? = dateFormatterGet.date(from: string)
+      //  print("Date",dateFormatterPrint.string(from: date!)) // Feb 01,2018
+        
+        return dateFormatterPrint.string(from: date ?? Date());
+    }
+
 }

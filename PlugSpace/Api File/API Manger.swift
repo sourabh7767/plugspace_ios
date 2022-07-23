@@ -68,7 +68,8 @@ class APIManager {
             }
             
             DLog("Response Error: ", response.error)
-            DLog("Response JSON: ", response.value)
+           // DLog("Response JSON: ", response.value)
+            print("Response JSON: ",response.value)
             DLog("response.request: ", response.request?.allHTTPHeaderFields)
             DLog("Response Status Code: ", response.response?.statusCode)
             if let res = response.value as? [String:Any] {

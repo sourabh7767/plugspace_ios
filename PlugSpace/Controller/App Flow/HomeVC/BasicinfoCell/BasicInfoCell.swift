@@ -24,9 +24,9 @@ class BasicInfoCell: UICollectionViewCell {
     
     func setData(img:String,details:String) {
         
-        if details != "" {
+       // if details != "" {
             imgInfo.image = UIImage(named: img)
-            lblInfoDetail.text = details
-        }
+            lblInfoDetail.text = details != "" ? details : ""
+       // }
     }
 }

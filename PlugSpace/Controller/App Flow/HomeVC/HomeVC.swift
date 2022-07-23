@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseDatabase
+import SwiftUI
 
 class HomeVC: BaseVC {
     
@@ -48,7 +49,7 @@ class HomeVC: BaseVC {
     @IBOutlet private weak var btnSearch: UIButton!
    
     //MARK:- Propties
-    
+  
     var viewModel = HomeVM()
     private var ReportViewPopUP = UIView.getView(viewT: ReportView.self)
     
@@ -138,28 +139,24 @@ class HomeVC: BaseVC {
         lblNoDataFound.isHidden = true
         UserDataView.isHidden = false
         
-        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
+       
             self.setData()
-        })
+        
     }
     
     func setData() {
-        
-        btnLike.tintColor = viewModel.userdata[0].isLike == "1" ? .red : .white
-        
-        if viewModel.userdata[0].mediaDetail.count != 0 {
-            imgProfile.sd_setImage(with: URL(string: viewModel.userdata[0].mediaDetail[0].profile), placeholderImage: UIImage(named: "home_1"), options: .retryFailed)
-        }
         
         viewModel.basicInfoArr.removeAll()
         lblName.text = viewModel.userdata[0].name + ", \(viewModel.userdata[0].age)" 
         lblWork.text = viewModel.userdata[0].jobTitle
         lblEducation.text = viewModel.userdata[0].educationStatus
         lblLocation.text = viewModel.userdata[0].location != "" ? viewModel.userdata[0].location : ""
-        imgLocation.isHidden = viewModel.userdata[0].location != "" ? false : true
         lblViewCount.text = viewModel.userdata[0].rank != "" ? viewModel.userdata[0].rank : "0"
         lblAboute.text = viewModel.userdata[0].aboutYou
         txtMySelf.text = viewModel.userdata[0].mySelfMen
+        
+       
+        
         
         viewModel.basicInfoArr.append(viewModel.userdata[0].height)
         viewModel.basicInfoArr.append(viewModel.userdata[0].weight)
@@ -170,7 +167,21 @@ class HomeVC: BaseVC {
         viewModel.basicInfoArr.append(viewModel.userdata[0].dressSize)
         viewModel.basicInfoArr.append(viewModel.userdata[0].timesOfEngaged)
         viewModel.basicInfoArr.append(viewModel.userdata[0].yourBodyTatto)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
+            self.setProfileData()
+        })
+        
+    }
     
+    func setProfileData() {
+        btnLike.tintColor = viewModel.userdata[0].isLike == "1" ? .red : .white
+        
+        if viewModel.userdata[0].mediaDetail.count != 0 {
+            imgProfile.sd_setImage(with: URL(string: viewModel.userdata[0].mediaDetail[0].profile), placeholderImage: UIImage(named: "home_1"), options: .retryFailed)
+        }
+        imgLocation.isHidden = viewModel.userdata[0].location != "" ? false : true
+        
         basicInfoCollectionView.delegate = self
         basicInfoCollectionView.dataSource = self
         basicInfoCollectionView.reloadData()
@@ -182,6 +193,7 @@ class HomeVC: BaseVC {
         
         self.tableView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
     }
+    
     
     //********************************************
      //MARK:- Action
@@ -254,7 +266,10 @@ class HomeVC: BaseVC {
                 alert.dismiss(animated: true)
                 self.likeUser(nil, nil)
             }))
-            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+                alert.dismiss(animated: true)
+               
+            }))
             self.present(alert, animated: true, completion: nil)
         }
         
@@ -312,7 +327,7 @@ class HomeVC: BaseVC {
     }
     
     func likeUser(_ comment: String?, _ message: String?) {
-        btnLike.tintColor = viewModel.userdata[0].isLike == "1" ? .white : .red
+        
         
         viewModel.likeType = viewModel.userdata[0].isLike == "1" ? "2" : "1"
         viewModel.likeUserId = viewModel.userdata[0].userId
@@ -322,15 +337,32 @@ class HomeVC: BaseVC {
             return
         }
         
-        viewModel.profileLikeDislike(comment, message) { (isSuccess) in
+        viewModel.profileLikeDislike(comment, message) { (isSuccess,status) in
             
             if isSuccess {
+                self.btnLike.tintColor = self.viewModel.userdata[0].isLike == "1" ? .white : .red
                 self.apiCalling()
                 //                self.alertWith(message: self.viewModel.errorMessage)
-            } else {
+            }else if status == 2
+            {
+                self.confirmationPopup()
+            }
+                        else {
                 self.alertWith(message: self.viewModel.errorMessage)
             }
         }
+    }
+    
+    
+    func confirmationPopup()  {
+        self.AskConfirmation(title: "", message: self.viewModel.errorMessage) { (result) in
+                if result { //User has clicked on Ok
+                    guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "SubscriptionVC") as? SubscriptionVC
+                    else { return}
+                  
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
     }
     
     @IBAction func clickBtnClose(_ sender: Any) {
@@ -350,12 +382,14 @@ class HomeVC: BaseVC {
             return
         }
         
-        viewModel.profileLikeDislike(nil, nil) { (isSuccess) in
+        viewModel.profileLikeDislike(nil, nil) { (isSuccess,status) in
             
             if isSuccess {
                 self.apiCalling()
 //                self.alertWith(message: self.viewModel.errorMessage)
-            } else {
+            } else if status == 2 {
+                self.confirmationPopup()
+            }else {
                     self.alertWith(message: self.viewModel.errorMessage)
             }
         }
@@ -385,6 +419,63 @@ class HomeVC: BaseVC {
 
     @IBAction func clickBtnReport(_ sender: Any) {
         
+        moreBtnAction { tapped in
+            switch tapped {
+            case "Save":
+                print("User click Save button")
+               self.saveProfile()
+            case "Report":
+                print("User click Report button")
+                self.reportUser()
+            case "Remove":
+                print("User click Remove button")
+                self.block_Profile()
+            default:
+                print("User click Cancel button")
+            }
+        }
+    }
+    
+    func saveProfile()  {
+        guard viewModel.userdata.count != 0 else {
+            alertWith(message: viewModel.errorMessage)
+            return
+        }
+        let otherUserId = viewModel.userdata[0].userId
+        viewModel.saveProfile(otherUserId) { [self] isSuccess  in
+            if isSuccess {
+                self.apiCalling()
+                (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.showToast(message: StringConstant.profileSavedSuceess, y: self.view.Getheight - 100, font: UIFont(name: AppFont.reguler, size: setCustomFont(18))!)
+            }else {
+                (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.alertWith(message: viewModel.errorMessage)
+            }
+        }
+        
+        
+    }
+    
+    
+    func block_Profile()  {
+        guard viewModel.userdata.count != 0 else {
+            alertWith(message: viewModel.errorMessage)
+            return
+        }
+        let otherUserId = viewModel.userdata[0].userId
+        viewModel.blockUserProfile(otherUserId) { [self] isSuccess in
+            if isSuccess {
+                self.apiCalling()
+                (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.showToast(message: StringConstant.profileRemovedSuceess, y: self.view.Getheight - 100, font: UIFont(name: AppFont.reguler, size: setCustomFont(18))!)
+            } else {
+                (appdelegate.window!.rootViewController! as! UINavigationController).viewControllers.last?.alertWith(message: viewModel.errorMessage)
+            }
+        }
+        
+        
+    }
+    
+    
+    func reportUser()
+    {
         guard viewModel.userdata.count != 0 else {
             alertWith(message: viewModel.errorMessage)
             return
@@ -398,6 +489,23 @@ class HomeVC: BaseVC {
         openXIB(XIB: ReportViewPopUP)
     }
     
+    
+    func moreBtnAction(completion : @escaping (_ userTapped: String) -> Void) {
+        let alert = UIAlertController(title: "Plugspace", message: "", preferredStyle: .actionSheet)
+         alert.addAction(UIAlertAction(title: "Save", style: .default , handler:{ (UIAlertAction)in
+             completion("Save")
+         }))
+         alert.addAction(UIAlertAction(title: "Report", style: .default , handler:{ (UIAlertAction)in
+             completion("Report")
+         }))
+         alert.addAction(UIAlertAction(title: "Remove", style: .default , handler:{ (UIAlertAction)in
+          completion("Remove")
+             
+         }))
+         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in }))
+         alert.view.tintColor = #colorLiteral(red: 0.9647058824, green: 0.3803921569, blue: 0.1607843137, alpha: 1)
+         self.present(alert, animated: true, completion: {})
+        }
 }
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -454,14 +562,28 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == storyCollectionView {
-            
-                let vc = storyboard?.instantiateViewController(withIdentifier: "StoryVC") as! StoryVC
-                vc.viewModel.userStoryDetails = viewModel.storyData
-                vc.viewModel.indexUser = indexPath
-                self.navigationController?.pushViewController(vc, animated: true)
-        } 
+            let vc = storyboard?.instantiateViewController(withIdentifier: "ContentViewController") as! ContentViewController
+            vc.pages = viewModel.storyData
+             vc.currentIndex = indexPath.row
+           // vc.viewModel.userStoryDetails = viewModel.storyData
+            self.navigationController?.pushViewController(vc, animated: true)
+        
+         
+        
+        
+//                let vc = storyboard?.instantiateViewController(withIdentifier: "StoryVC") as! StoryVC
+//                vc.viewModel.userStoryDetails = viewModel.storyData
+//                vc.viewModel.indexUser = indexPath
+//                self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
+
 }
+
+
+
+
+
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -472,11 +594,11 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserPostCell") as! UserPostCell
         cell.setdata(data: viewModel.getMediaDetails(indexPath: indexPath))
-        cell.btnReport.addTarget(self, action: #selector(clickbtn(_:)), for: .touchUpInside)
+        cell.btnReport.addTarget(self, action: #selector(clickMoreBtn(_:)), for: .touchUpInside)
         return cell
     }
     
-    @objc func clickbtn(_ sender:UIButton) {
+    @objc func clickMoreBtn(_ sender:UIButton) {
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         let indexPath = self.tableView.indexPathForRow(at:buttonPosition)
         ReportViewPopUP = UIView.getView(viewT: ReportView.self)
@@ -514,4 +636,21 @@ extension HomeVC: UITextFieldDelegate {
         }
         self.apiCalling()
     }
+}
+extension UIViewController {
+
+func AskConfirmation (title:String, message:String, completion:@escaping (_ result:Bool) -> Void) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+    
+
+    alert.addAction(UIAlertAction(title: "Subscribe now", style: .default, handler: { action in
+        completion(true)
+    }))
+
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+        completion(false)
+    }))
+    alert.view.tintColor = AppColor.Orange
+    self.present(alert, animated: true, completion: nil)
+  }
 }

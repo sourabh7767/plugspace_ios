@@ -210,6 +210,23 @@
 		04FE567B27ACE15F00C51969 /* AudioPleyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE567A27ACE15F00C51969 /* AudioPleyer.swift */; };
 		16DD98E1F0E374D85E67BB43 /* Pods_PlugSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6BFEF713AC9F10BF8A25A4 /* Pods_PlugSpace.framework */; };
 		4B3344CB280FC7AC00CAA79A /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3344CA280FC7AC00CAA79A /* CommentView.swift */; };
+		E1A240622866A3CE00DA49CB /* SavedProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A240612866A3CE00DA49CB /* SavedProfileVC.swift */; };
+		E1A240642866A3E400DA49CB /* SavedProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A240632866A3E400DA49CB /* SavedProfileVM.swift */; };
+		E1A8D2AD28217AA100142AF5 /* AddStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8D2AC28217AA100142AF5 /* AddStoryVC.swift */; };
+		E1A8D2B828217C0100142AF5 /* CKFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8D2B028217C0100142AF5 /* CKFError.swift */; };
+		E1A8D2B928217C0100142AF5 /* CKFPhotoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8D2B228217C0100142AF5 /* CKFPhotoSession.swift */; };
+		E1A8D2BA28217C0100142AF5 /* CKFGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8D2B328217C0100142AF5 /* CKFGridView.swift */; };
+		E1A8D2BB28217C0100142AF5 /* CKFPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8D2B428217C0100142AF5 /* CKFPreviewView.swift */; };
+		E1A8D2BC28217C0100142AF5 /* CKFSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8D2B528217C0100142AF5 /* CKFSession.swift */; };
+		E1A8D2BD28217C0100142AF5 /* CKFUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8D2B628217C0100142AF5 /* CKFUtils.swift */; };
+		E1A8D2BE28217C0100142AF5 /* CKFVideoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8D2B728217C0100142AF5 /* CKFVideoSession.swift */; };
+		E1A8D2C028217C3F00142AF5 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8D2BF28217C3F00142AF5 /* Helper.swift */; };
+		E1B7C828282C28D400E40991 /* usersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7C822282C28D300E40991 /* usersCollectionViewCell.swift */; };
+		E1B7C829282C28D400E40991 /* ARSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7C824282C28D400E40991 /* ARSupport.swift */; };
+		E1B7C82A282C28D400E40991 /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7C826282C28D400E40991 /* ARModel.swift */; };
+		E1B7C82C282C28E500E40991 /* PreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7C82B282C28E500E40991 /* PreViewController.swift */; };
+		E1B7C82E282C28F900E40991 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7C82D282C28F900E40991 /* ContentViewController.swift */; };
+		E1B91EBD282EAE5700A98C41 /* RecordStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B91EBC282EAE5700A98C41 /* RecordStoryVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -421,6 +438,24 @@
 		4B3344CA280FC7AC00CAA79A /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		9A6BFEF713AC9F10BF8A25A4 /* Pods_PlugSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlugSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C768DFBEC885BDE1B42D823B /* Pods-PlugSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlugSpace.release.xcconfig"; path = "Target Support Files/Pods-PlugSpace/Pods-PlugSpace.release.xcconfig"; sourceTree = "<group>"; };
+		E1A240612866A3CE00DA49CB /* SavedProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProfileVC.swift; sourceTree = "<group>"; };
+		E1A240632866A3E400DA49CB /* SavedProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProfileVM.swift; sourceTree = "<group>"; };
+		E1A8D2AC28217AA100142AF5 /* AddStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryVC.swift; sourceTree = "<group>"; };
+		E1A8D2B028217C0100142AF5 /* CKFError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFError.swift; sourceTree = "<group>"; };
+		E1A8D2B128217C0100142AF5 /* CameraKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraKit.h; sourceTree = "<group>"; };
+		E1A8D2B228217C0100142AF5 /* CKFPhotoSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFPhotoSession.swift; sourceTree = "<group>"; };
+		E1A8D2B328217C0100142AF5 /* CKFGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFGridView.swift; sourceTree = "<group>"; };
+		E1A8D2B428217C0100142AF5 /* CKFPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFPreviewView.swift; sourceTree = "<group>"; };
+		E1A8D2B528217C0100142AF5 /* CKFSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFSession.swift; sourceTree = "<group>"; };
+		E1A8D2B628217C0100142AF5 /* CKFUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFUtils.swift; sourceTree = "<group>"; };
+		E1A8D2B728217C0100142AF5 /* CKFVideoSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFVideoSession.swift; sourceTree = "<group>"; };
+		E1A8D2BF28217C3F00142AF5 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		E1B7C822282C28D300E40991 /* usersCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usersCollectionViewCell.swift; sourceTree = "<group>"; };
+		E1B7C824282C28D400E40991 /* ARSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSupport.swift; sourceTree = "<group>"; };
+		E1B7C826282C28D400E40991 /* ARModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
+		E1B7C82B282C28E500E40991 /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreViewController.swift; sourceTree = "<group>"; };
+		E1B7C82D282C28F900E40991 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		E1B91EBC282EAE5700A98C41 /* RecordStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStoryVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,10 +579,12 @@
 			isa = PBXGroup;
 			children = (
 				0422435E274CA5390012C831 /* TabBar */,
+				E1A8D2AB28217A3400142AF5 /* AddStory */,
 				049436FD2751ECAC00BE58D1 /* HomeVC */,
 				0494374B2751F6CD00BE58D1 /* MyScore */,
 				0422436F274CFAB80012C831 /* Chat */,
 				04224369274CC27A0012C831 /* Edit Profile */,
+				E1B7C81F282C28A000E40991 /* StoryPreview */,
 				049437352751F30500BE58D1 /* Story */,
 				049437432751F55800BE58D1 /* RealittyRank */,
 				0494370F2751ED9600BE58D1 /* PreviewScreen */,
@@ -828,6 +865,7 @@
 			children = (
 				0493C8002751FAAF00859F5A /* ChatSegmentVC.swift */,
 				0412091627B61CBE00CBD62A /* ChatSegmentVM.swift */,
+				E1A240602866A3A000DA49CB /* SavedProfile */,
 				04508AEA27561E150067ED44 /* Liked */,
 				04508AF027561E520067ED44 /* VIews */,
 				04508AE627561DED0067ED44 /* MatchAndChat */,
@@ -1530,6 +1568,77 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E1A240602866A3A000DA49CB /* SavedProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E1A240612866A3CE00DA49CB /* SavedProfileVC.swift */,
+				E1A240632866A3E400DA49CB /* SavedProfileVM.swift */,
+			);
+			path = SavedProfile;
+			sourceTree = "<group>";
+		};
+		E1A8D2AB28217A3400142AF5 /* AddStory */ = {
+			isa = PBXGroup;
+			children = (
+				E1A8D2BF28217C3F00142AF5 /* Helper.swift */,
+				E1A8D2AC28217AA100142AF5 /* AddStoryVC.swift */,
+				E1B91EBC282EAE5700A98C41 /* RecordStoryVC.swift */,
+				E1A8D2AF28217C0100142AF5 /* CameraKit */,
+			);
+			path = AddStory;
+			sourceTree = "<group>";
+		};
+		E1A8D2AF28217C0100142AF5 /* CameraKit */ = {
+			isa = PBXGroup;
+			children = (
+				E1A8D2B028217C0100142AF5 /* CKFError.swift */,
+				E1A8D2B128217C0100142AF5 /* CameraKit.h */,
+				E1A8D2B228217C0100142AF5 /* CKFPhotoSession.swift */,
+				E1A8D2B328217C0100142AF5 /* CKFGridView.swift */,
+				E1A8D2B428217C0100142AF5 /* CKFPreviewView.swift */,
+				E1A8D2B528217C0100142AF5 /* CKFSession.swift */,
+				E1A8D2B628217C0100142AF5 /* CKFUtils.swift */,
+				E1A8D2B728217C0100142AF5 /* CKFVideoSession.swift */,
+			);
+			path = CameraKit;
+			sourceTree = "<group>";
+		};
+		E1B7C81F282C28A000E40991 /* StoryPreview */ = {
+			isa = PBXGroup;
+			children = (
+				E1B7C82D282C28F900E40991 /* ContentViewController.swift */,
+				E1B7C82B282C28E500E40991 /* PreViewController.swift */,
+				E1B7C823282C28D400E40991 /* extension */,
+				E1B7C820282C28D300E40991 /* helper */,
+				E1B7C825282C28D400E40991 /* Model */,
+			);
+			path = StoryPreview;
+			sourceTree = "<group>";
+		};
+		E1B7C820282C28D300E40991 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				E1B7C822282C28D300E40991 /* usersCollectionViewCell.swift */,
+			);
+			path = helper;
+			sourceTree = "<group>";
+		};
+		E1B7C823282C28D400E40991 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				E1B7C824282C28D400E40991 /* ARSupport.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		E1B7C825282C28D400E40991 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E1B7C826282C28D400E40991 /* ARModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1741,13 +1850,17 @@
 				04B2F94827685A1200F2A498 /* SignUpVM.swift in Sources */,
 				04A3F03B2797E50B00E6F171 /* NotificationVM.swift in Sources */,
 				04E80D6B2759FB8400E6F3F0 /* FavouriteVC.swift in Sources */,
+				E1B91EBD282EAE5700A98C41 /* RecordStoryVC.swift in Sources */,
 				04DA95702745279100A2D982 /* ChildrenTVCell.swift in Sources */,
 				040D685A274B5AAE00EBF234 /* AgeRangeVC.swift in Sources */,
+				E1A240622866A3CE00DA49CB /* SavedProfileVC.swift in Sources */,
 				0494372A2751EE1800BE58D1 /* FaqTableCell.swift in Sources */,
 				04B5E1562752112900DA09D5 /* NotificationVC.swift in Sources */,
 				04A9505027426F8C009B5488 /* NameVC.swift in Sources */,
 				0400E19E27732EB900D4A926 /* SelectedImageVM.swift in Sources */,
 				04B2F98A27689B9E00F2A498 /* RankVM.swift in Sources */,
+				E1B7C829282C28D400E40991 /* ARSupport.swift in Sources */,
+				E1A8D2BD28217C0100142AF5 /* CKFUtils.swift in Sources */,
 				04E80D76275A13C800E6F3F0 /* FavouriteVM.swift in Sources */,
 				0436269B27477E400046105E /* DressSizeTVCell.swift in Sources */,
 				044D345327549BF000E6F29E /* HomeVM.swift in Sources */,
@@ -1765,10 +1878,13 @@
 				0455957B277086CA0052BF47 /* AppleLogin.swift in Sources */,
 				04E80D98275A397600E6F3F0 /* MusicVC.swift in Sources */,
 				04DA7D05274391E100672E96 /* HeightVC.swift in Sources */,
+				E1A8D2B828217C0100142AF5 /* CKFError.swift in Sources */,
 				0422D0A727564FC3004FCD9E /* AddPhotoVM.swift in Sources */,
 				04DA954E2744C36900A2D982 /* DobVC.swift in Sources */,
 				04002CF727461E3100430B85 /* RelationshipStatusVC.swift in Sources */,
 				040D686E274B774500EBF234 /* MeetVC.swift in Sources */,
+				E1A240642866A3E400DA49CB /* SavedProfileVM.swift in Sources */,
+				E1B7C828282C28D400E40991 /* usersCollectionViewCell.swift in Sources */,
 				049437342751F2BB00BE58D1 /* AddDescriptionVC.swift in Sources */,
 				04609DAC27796F2A00A55294 /* MatchAndChatVM.swift in Sources */,
 				0436269627477DB20046105E /* DressSizeVC.swift in Sources */,
@@ -1782,6 +1898,7 @@
 				045BC53627897214005A1D0F /* RealittyVM.swift in Sources */,
 				049437322751EE1900BE58D1 /* HelpVC.swift in Sources */,
 				04EC7F2727A00B0D00EDE5A3 /* CountryExtention.swift in Sources */,
+				E1B7C82A282C28D400E40991 /* ARModel.swift in Sources */,
 				04BC043327BE117E00A02624 /* StoryLineVC.swift in Sources */,
 				04A950452742647A009B5488 /* GenderVC.swift in Sources */,
 				04224372274CFAD10012C831 /* ChatVC.swift in Sources */,
@@ -1793,6 +1910,7 @@
 				04A9501827421A14009B5488 /* OtpVC.swift in Sources */,
 				04D9F05B2769E71100F0C16F /* LocationManager.swift in Sources */,
 				0494372D2751EE1800BE58D1 /* SettingVC.swift in Sources */,
+				E1B7C82C282C28E500E40991 /* PreViewController.swift in Sources */,
 				04A40C012767426500798034 /* LoginModel.swift in Sources */,
 				4B3344CB280FC7AC00CAA79A /* CommentView.swift in Sources */,
 				04DA7D1C2743DFB500672E96 /* EducationStatusVC.swift in Sources */,
@@ -1810,10 +1928,12 @@
 				04B085BC275494EA0020B762 /* BaseVM.swift in Sources */,
 				047565B62758D9F1005E31FA /* WeightVM.swift in Sources */,
 				0494372F2751EE1900BE58D1 /* SettingsTableCell.swift in Sources */,
+				E1A8D2C028217C3F00142AF5 /* Helper.swift in Sources */,
 				043626D82747D2310046105E /* TattooVC.swift in Sources */,
 				0493C80E2751FAB000859F5A /* MatchAndChatTableCell.swift in Sources */,
 				04E80D89275A275500E6F3F0 /* MusicNameVC.swift in Sources */,
 				04A352D127BCCF02000AEB30 /* ChatVM.swift in Sources */,
+				E1A8D2AD28217AA100142AF5 /* AddStoryVC.swift in Sources */,
 				04DA7D09274392AE00672E96 /* WeightVC.swift in Sources */,
 				0400E19B2772F1F600D4A926 /* HomeModel.swift in Sources */,
 				049437422751F51900BE58D1 /* SplashScreen2VC.swift in Sources */,
@@ -1830,6 +1950,7 @@
 				04002D0B274679C400430B85 /* CompanyVC.swift in Sources */,
 				04002CEC27460DAB00430B85 /* HowManyChildrenVC.swift in Sources */,
 				0494371B2751ED9600BE58D1 /* PreviewVC.swift in Sources */,
+				E1A8D2BB28217C0100142AF5 /* CKFPreviewView.swift in Sources */,
 				046E05F527B299A2005F127C /* MyScoreTVCell.swift in Sources */,
 				0493C8112751FAB000859F5A /* LikeTableCell.swift in Sources */,
 				04ACA444273FC674008CA6E3 /* SplashVC.swift in Sources */,
@@ -1845,9 +1966,12 @@
 				04B2F95F27685ABF00F2A498 /* API Client.swift in Sources */,
 				04645043276B06710010BED6 /* InstagramVC.swift in Sources */,
 				04A3F0382797E26800E6F171 /* StoryViewVM.swift in Sources */,
+				E1A8D2BE28217C0100142AF5 /* CKFVideoSession.swift in Sources */,
 				04459EE1273FD6DE004D3AEA /* Global Constants.swift in Sources */,
 				04609DB027797B2100A55294 /* LikeVM.swift in Sources */,
 				04B2F9942768C81800F2A498 /* SettingVM.swift in Sources */,
+				E1A8D2B928217C0100142AF5 /* CKFPhotoSession.swift in Sources */,
+				E1B7C82E282C28F900E40991 /* ContentViewController.swift in Sources */,
 				0493C8152751FAB000859F5A /* ViewTableCell.swift in Sources */,
 				047565BB2758DD3A005E31FA /* WeightVCell.swift in Sources */,
 				043D18DE2795384200D5F335 /* StroryModel.swift in Sources */,
@@ -1873,11 +1997,13 @@
 				047565B32758D739005E31FA /* DressSizeVM.swift in Sources */,
 				04CD57EA2796DBDA00F8FAF9 /* NoDataFoundView.swift in Sources */,
 				04DA956A2745276B00A2D982 /* ChildrenVC.swift in Sources */,
+				E1A8D2BC28217C0100142AF5 /* CKFSession.swift in Sources */,
 				04DA958327452FA600A2D982 /* ChildrenVM.swift in Sources */,
 				043626CA2747CD230046105E /* MySelfVC.swift in Sources */,
 				04B2F9842768925800F2A498 /* OtpModel.swift in Sources */,
 				04A40BFE276741E000798034 /* LoginVM.swift in Sources */,
 				0422436C274CC2BE0012C831 /* EditProfileVC.swift in Sources */,
+				E1A8D2BA28217C0100142AF5 /* CKFGridView.swift in Sources */,
 				04224377274CFAF60012C831 /* SenderChatTVCell.swift in Sources */,
 				04002D1627467AD800430B85 /* JobVC.swift in Sources */,
 				04AC4A2E27588DEC00ACC745 /* HeightTVCell.swift in Sources */,
@@ -2036,7 +2162,7 @@
 				CODE_SIGN_ENTITLEMENTS = PlugSpace/PlugSpace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = FY68T47L8H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2072,7 +2198,7 @@
 				CODE_SIGN_ENTITLEMENTS = PlugSpace/PlugSpace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = FY68T47L8H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

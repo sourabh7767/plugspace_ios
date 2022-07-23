@@ -15,7 +15,10 @@ class TabBarVM : BaseVM {
     
     var selectedArr = ["ic_home_tab","ic_Score","ic_Chat","ic_Profile"]
     var normalArr = ["ic_Home_deseleted","ic_Score_deseleted","ic_Chat_Deseleted","ic_Profile_Deseleted"]
-    let title = ["Capture photo","Phone Library","Capture Video","Video Phone Library"]
+   // let title = ["Capture photo","Phone Library","Capture Video","Video Phone Library"]
+    let title = ["Capture Video","Phone Library","Video Phone Library"]
+    
+    
     
     var selectedVC : UIViewController? = nil
     var vcIds : [UIViewController.Type] = [HomeVC.self,MyScoreVC.self,ChatSegmentVC.self,EditProfileVC.self]

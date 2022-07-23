@@ -131,6 +131,21 @@ class APIClient {
     func report(parameter: [String:Any] , completion: @escaping APICallback) {
         return APIManager.postRequest(url: APIS.AppFlow.profileReportByUser, parameters: parameter, completion: completion)
     }
+    //MARK:- Save Profile
+    func SaveProfile(parameter: [String:Any] , completion: @escaping APICallback) {
+        return APIManager.postRequest(url: APIS.AppFlow.saveProfile, parameters: parameter, completion: completion)
+    }
+    
+    //MARK:- Save Profile
+    func blockProfile(parameter: [String:Any] , completion: @escaping APICallback) {
+        return APIManager.postRequest(url: APIS.AppFlow.blockUser, parameters: parameter, completion: completion)
+    }
+    
+    
+    func GetSavedOtherProfile(parameter: [String:Any] , completion: @escaping APICallback) {
+        return APIManager.postRequest(url: APIS.AppFlow.getSavedProfile, parameters: parameter, completion: completion)
+    }
+    
     
     //MARK:- Music
     func getMusicList(parameter: [String:Any] ,completion: @escaping APICallback) {

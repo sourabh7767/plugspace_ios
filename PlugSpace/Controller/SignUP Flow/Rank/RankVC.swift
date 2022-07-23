@@ -88,7 +88,7 @@ class RankVC: BaseVC {
         horizontalMultiSlider.thumbImage = UIImage(named: "sinlgeProgressBar")
         horizontalMultiSlider.orientation = .horizontal
         horizontalMultiSlider.minimumValue = 1
-        horizontalMultiSlider.maximumValue = 10
+        horizontalMultiSlider.maximumValue = 11
         horizontalMultiSlider.outerTrackColor = .white
         horizontalMultiSlider.value = [2]
         horizontalMultiSlider.valueLabelPosition = .top

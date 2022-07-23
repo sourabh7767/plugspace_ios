@@ -170,18 +170,36 @@ class PreviewVC: BaseVC {
             
             for image in assets {
                 image.fetchOriginalImage(completeBlock: { (image, _) in
-                    self.viewModel.type = self.viewModel.userDataPreView.mediaDetail[self.viewModel.indexPath.row].type
-                    self.viewModel.feedId = self.viewModel.userDataPreView.mediaDetail[self.viewModel.indexPath.row].feedId
                     if let cell = self.tableView.cellForRow(at: self.viewModel.indexPath) as? UserPreviewPostCell {
                         cell.imgProfile.image = image
                     }
-                    self.viewModel.feedImage = image!.jpegData(compressionQuality: 0.5)!
+                        let type = self.viewModel.userDataPreView.mediaDetail[self.viewModel.indexPath.row].type
+                    if type == "profile"
+                    {
+                        
+                        self.viewModel.profileImg = image!.jpegData(compressionQuality: 0.5)!
+                        self.viewModel.MediaId = self.viewModel.userDataPreView.mediaDetail[self.viewModel.indexPath.row].media_id
+                    }
+                    else
+                    {
+                      //  self.viewModel.type = self.viewModel.userDataPreView.mediaDetail[self.viewModel.indexPath.row].type
+                        self.viewModel.removeMediaId = self.viewModel.userDataPreView.mediaDetail[self.viewModel.indexPath.row].feedId
+                        self.viewModel.feedId = self.viewModel.userDataPreView.mediaDetail[self.viewModel.indexPath.row].feedId
+                        self.viewModel.feedImage = image!.jpegData(compressionQuality: 0.5)!
+                    }
+                    self.viewModel.type = type
+                   
+                    self.viewModel.removeMediaId = ""
+                    
+                    self.viewModel.isEdit = true
+              
+                    
                     self.previewUpdateProCallApi()
                 })
             }
         }
     }
-    
+    let CurrentUserId = SignUpModel.init(dict: AppPrefsManager.shared.getUserData() as? [String : Any] ?? [String:Any]())
     private func goToFavouriteVC() {
         let vc = UIStoryboard.instantiateVC(FavouriteVC.self, .Home)
         vc.viewModel.userID = viewModel.userId
@@ -256,18 +274,22 @@ extension PreviewVC: UITableViewDelegate, UITableViewDataSource {
             return cell
     }
     
+    
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let obj = viewModel.getMediaDetails(indexpath: indexPath)
-        if obj.type == "profile" {
-            
-            return 0
-        } else {
+//        let obj = viewModel.getMediaDetails(indexpath: indexPath)
+//        if obj.type == "profile" {
+//
+//            return 0
+//        } else {
             return UITableView.automaticDimension
-        }
+//        }
     }
     
     @objc  func clickbtn(_ sender:UIButton) {
-        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+       let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+        
         viewModel.indexPath = self.tableView.indexPathForRow(at:buttonPosition)
     }
 }
@@ -286,8 +308,17 @@ extension PreviewVC : updateProfileDelegate {
             
             let alert = UIAlertController(title: AppName, message: StringConstant.DeleteProfile, preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { [self] action in
-                viewModel.removeMediaId = viewModel.userDataPreView.mediaDetail[viewModel.indexPath.row].feedId
-                viewModel.type = viewModel.userDataPreView.mediaDetail[viewModel.indexPath.row].type
+                self.viewModel.MediaId = ""
+                let type = viewModel.userDataPreView.mediaDetail[viewModel.indexPath.row].type
+                if type == "profile"
+                {
+                    viewModel.removeMediaId = viewModel.userDataPreView.mediaDetail[viewModel.indexPath.row].media_id
+                }
+                else{
+                    viewModel.removeMediaId = viewModel.userDataPreView.mediaDetail[viewModel.indexPath.row].feedId
+                }
+                viewModel.type = type
+                self.viewModel.isEdit = false
                 previewUpdateProCallApi()
             }))
             alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.destructive, handler: nil))

@@ -68,6 +68,8 @@ extension AppleData: ASAuthorizationControllerDelegate {
                 
                 viewLoginModel.isApple = "1"
                 viewLoginModel.appleId = userIdentifier
+                SignUPVM.shared.appleId = userIdentifier
+                SignUPVM.shared.isApple = "1"
                 viewLoginModel.isInsta = "0"
                 viewLoginModel.instaId = "0"
                 viewModel.delegate = self

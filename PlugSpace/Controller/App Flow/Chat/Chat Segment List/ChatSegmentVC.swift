@@ -20,6 +20,7 @@ class ChatSegmentVC: BaseVC {
     //MARK:- Properties
     
     private var vcArray = [UIViewController]()
+    private var SavedProfile: SavedProfileVC!
     private var MatchAndChat: MatchAndChatVC!
     private var View: ViewVC!
     private var Like: LikeVC!
@@ -68,9 +69,17 @@ class ChatSegmentVC: BaseVC {
         MatchAndChat.viewModel.superVc = self
         MatchAndChat.title = MatchAndChat.viewModel.userChatArr.count != 0 ? "\(MatchAndChat.viewModel.userChatArr.count) Match & Chat" : "Match & Chat"
         
+        
+        
+        SavedProfile = UIStoryboard.instantiateVC(SavedProfileVC.self, .Home)
+        SavedProfile.viewModel.superVc = self
+        SavedProfile.title = "Saved"
+        
+        
         vcArray.append(Like)
         vcArray.append(View)
         vcArray.append(MatchAndChat)
+        vcArray.append(SavedProfile)
         segmentedPager.reloadData()
     }
     

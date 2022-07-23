@@ -102,3 +102,44 @@ class likeDetailsModel {
         return temp
     }
 }
+
+class SavedProfileModel {
+    
+    var likeId = ""
+    var userId = ""
+    var likeUserId = ""
+    var likeType = ""
+    var dateTime = ""
+    var name = ""
+    var jobTitle = ""
+    var age = ""
+    var profile = ""
+    var comment = ""
+    
+    init(dict:[String:Any]) {
+        
+       if let tempDict =  dict["other_profile"] as? [String:Any]
+        {
+        
+        comment = tempDict["comment"] as? String ?? "" //
+        likeId = tempDict["like_id"] as? String ?? "" //
+        userId = tempDict["user_id"] as? String ?? ""
+        likeUserId = tempDict["like_user_id"] as? String ?? "" //
+        likeType = tempDict["like_type"] as? String ?? ""//
+        dateTime = dict["created_at"] as? String ?? ""  //
+        name = tempDict["name"] as? String ?? ""
+        jobTitle = tempDict["job_title"] as? String ?? ""
+        age = tempDict["age"] as? String ?? ""
+        profile = tempDict["profile"] as? String ?? ""
+       }
+    }
+    
+   class func getSavedProfileData(data:[Any]) -> [SavedProfileModel] {
+        
+        var temp = [SavedProfileModel]()
+        for dict in data {
+            temp.append(SavedProfileModel(dict: dict as? [String:Any] ?? [String:Any]()))
+        }
+        return temp
+    }
+}

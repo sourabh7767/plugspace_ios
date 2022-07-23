@@ -62,7 +62,7 @@ class HomeVM:BaseVM {
         return false
     }
     
-    func profileLikeDislike(_ comment: String?, _ message: String?, completion : @escaping (_ isSuccess: Bool) -> Void) {
+    func profileLikeDislike(_ comment: String?, _ message: String?, completion : @escaping (_ isSuccess: Bool,_ statusCode:Int?) -> Void) {
         
         let parameterRequest = ParameterRequest()
         
@@ -75,6 +75,63 @@ class HomeVM:BaseVM {
         apiClient.profileLikeDislike(parameter: parameterRequest.parameters) { (resp, respMsg, respCode, err) in
             guard err == nil else {
                 self.errorMessage = err!
+                completion(false,0)
+                return
+            }
+            
+            if respCode == ResponseStatus.success {
+                
+                self.errorMessage = respMsg!
+                completion(true,1)
+            } else if respCode == ResponseStatus.NotConfirmAccount
+            {
+                self.errorMessage = respMsg ?? ""
+                completion(false, 2)
+            }
+            
+            else {
+                
+                self.errorMessage = respMsg!
+                completion(false,0)
+            }
+        }
+    }
+    
+    func saveProfile(_ savedUserId: String?,completion : @escaping (_ isSuccess: Bool) -> Void) {
+        
+        let parameterRequest = ParameterRequest()
+        
+        parameterRequest.addParameter(key: ParameterRequest.userId, value: userId.userId)
+        parameterRequest.addParameter(key: ParameterRequest.savedUserId, value: savedUserId)
+       
+        apiClient.SaveProfile(parameter: parameterRequest.parameters) { (resp, respMsg, respCode, err) in
+            guard err == nil else {
+                self.errorMessage = err!
+                completion(false)
+                return
+            }
+            
+            if respCode == ResponseStatus.success {
+                self.errorMessage = respMsg!
+                    completion(true)
+            }
+            else {
+                self.errorMessage = respMsg!
+                completion(false)
+            }
+        }
+    }
+    
+    func blockUserProfile(_ blockUserId: String?,completion : @escaping (_ isSuccess: Bool) -> Void) {
+        
+        let parameterRequest = ParameterRequest()
+        
+        parameterRequest.addParameter(key: ParameterRequest.userId, value: userId.userId)
+        parameterRequest.addParameter(key: ParameterRequest.blockUserId, value: blockUserId)
+       
+        apiClient.blockProfile(parameter: parameterRequest.parameters) { (resp, respMsg, respCode, err) in
+            guard err == nil else {
+                self.errorMessage = err!
                 completion(false)
                 return
             }
@@ -83,13 +140,16 @@ class HomeVM:BaseVM {
                 
                 self.errorMessage = respMsg!
                 completion(true)
-            }else {
+            } else {
                 
                 self.errorMessage = respMsg!
                 completion(false)
             }
         }
     }
+    
+    
+    
     
     func getDefaultMessages(completion: @escaping (_ isSuccess: [String]) -> ()) {
         apiClient.getDefaultMessages { response, responsemessage, resCode, errorStr in

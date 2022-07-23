@@ -77,12 +77,14 @@ class EditProfileVC: BaseVC {
         viewModel.imagePicker.delegate = self
         txtDob.delegate = self
         aboutTextView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom:10, right: 10)
-        setData()
+       
         setDropDown()
         setImageController()
         setUpMultiSlider()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        setData()
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setUpUI()

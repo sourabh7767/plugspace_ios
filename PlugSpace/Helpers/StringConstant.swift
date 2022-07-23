@@ -126,6 +126,11 @@ struct StringConstant {
     static let activeUser = "ACTIVE_USER"
     static let chatting = "CHATTING"
     static let chatList = "CHAT_LIST"
+    
+    //MARK:- Profile Saved Suceess
+    static let profileSavedSuceess = "Profile saved successfully"
+    static let profileRemovedSuceess = "Profile removed successfully"
+    
 }
 
 struct EmptyMessages {

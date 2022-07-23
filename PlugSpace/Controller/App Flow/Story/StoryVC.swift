@@ -173,7 +173,7 @@ class StoryVC: BaseVC, SegmentedProgressBarDelegate {
         openXIB(XIB: ReportViewPopUP)
     }
     
-    func    getStoryApiCall() {
+    func getStoryApiCall() {
         
         viewModel.viewUserID = viewModel.userStoryDetails[viewModel.indexUser.row].userId
         

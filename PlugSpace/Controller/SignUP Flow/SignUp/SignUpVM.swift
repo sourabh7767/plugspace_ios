@@ -178,7 +178,8 @@ class SignUPVM: BaseVM {
                 fileKeys.append(ParameterRequest.Multiprofile)
             }
             
-            apiClient.SignUp(parameters: parameterRequest.parameters, files: files, fileNames: fileNames, fileKeys: fileKeys) { [self] (resp, respMsg, respCode, err) in
+           // print("parms:",parameterRequest.parameters)
+        apiClient.SignUp(parameters: parameterRequest.parameters, files: files, fileNames: fileNames, fileKeys: fileKeys) { [self] (resp, respMsg, respCode, err) in
                 guard err == nil else {
                     self.errorMessage = err!
                     completion(false)

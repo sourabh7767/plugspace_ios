@@ -96,6 +96,7 @@ class StoryVM: BaseVM {
             if respCode == ResponseStatus.success {
                 if let respDict = resp as? [String:Any] {
                     self.userStoryData = StoryModel.getUserStoryDetails(data: respDict["data"] as? [Any] ?? [Any]())
+                    //self.userStoryData.append(contentsOf: StoryModel.getUserStoryDetails(data: respDict["data"] as? [Any] ?? [Any]()))
                 }
                 
                 self.errorMessage = respMsg!
